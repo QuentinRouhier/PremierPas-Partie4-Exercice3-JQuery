@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+ <meta charset="utf-8">
+ <script src="jquery-2.2.4.js"></script>
+ <title>Exercice 3</title>
+</head>
+<body>
+ <!--Exercice 3 : Créer un formulaire qui demande le nom, le prénom, l'adresse
+ mail et le numéro de téléphone de l'utilisateur.
+ Verifier que l'adresse mail est bien une adresse mail, vérifier que le
+ numéro de téléphone ne comporte que des chiffres, et que le nom et le prénom
+ ne contiennent que des lettres ou des tirets.-->
+ <form class="identity">
+   <fieldset>
+     <label for="name">Votre nom:</label> <input type="text" name="name" value="" id="name">
+     <p>Votre prénom : <input type="text" name="surname" value="" id="surname"></p>
+     <p>Adresse : <textarea name="adress" rows="8" cols="80" id="adress"></textarea></p>
+     <p>Numéro de téléphone : <input type="texte" name="phone" value="" id="phone"></p>
+     <p>Mail : <input type="text" name="mailing" value="" id="mailing"></p>
+   </fieldset>
+   <button type="text" name="button" id="validate">Valider</button>
+ </form>
+ <script>
+ $(document).ready(function(){
+   $('#validate').click(function(){
+     /*Regex =  sert à créer un syntaxe qui permet de comparer la saisie d'un champs
+     par rapport à la forme voulue (exemple: contrucstion d'une adresse mail), toujours
+     écrite entre / / et treminé par un i qui indique que la casse n'est pas importante
+     et permet de saisir aussi bien en Maj qu'en Min*/
+     var regexNom = /^\D+[-]?\D+/i;
+     var regexTelephone = /^0[1-9]([ \.\-\/,]?\d{2}){4}/;
+     var regexMail = /^[\w\-\.]+[a-z0-9]@[\w\-\.]+[a-z0-9]\.[a-z]+/i;
+     /*Ici je demande à ma regex de se comparer à la valeur de mon champs nom
+     si regex non respecté une alert s'affiche*/
+     if(regexNom.test($('#name').val()) == false){
+       alert('Vérifiez votre saisie NOM!');
+     };
+     if (regexNom.test($('#surname').val()) == false) {
+       alert('Vérifiez saisie PRENOM!');
+     };
+     if (regexTelephone.test($('#phone').val()) == false) {
+       alert('Vérifier saisie TELEPHONE!');
+     };
+     if (regexMail.test($('#mailing').val()) == false) {
+       alert('Vérifier sasie MAIL');
+     }
+   });
+ });
+ </script>
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>exercice 3</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <p>Nom</p>
+  <label for="nom"></label><input type="text" name="nom" value="" id="nom" />
+  <p>Prenom</p>
+  <label for="prenom"></label><input type="text" name="prenom" value="" id="prenom" />
+  <p>Adresse mail</p>
+  <label for="adresseMail"></label><input type="text" name="adresseMail" value="" id="adresseMail" />
+  <p>Numeros de telephone</p>
+  <label for="numerosDeTelephone"></label><input type="text" name="numerosDeTelephone" value="" id="telephone" />
+  <button type="button" name="button" id="button">Validez</button>
+  <p id="resultat"></p>
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous">
+  </script>
+  <script>
+  $('#button').click(function() {
+      var mail = $('#adresseMail').val();
+      var nom = $('#nom').val();
+      var prenom = $('#prenom').val();
+      var telephone = $('#telephone').val();
+      if ((/^[^-]\D*(-)?\D+$/i).test(nom)){
+        $('#nom').css('borderColor', ('green'));
+      } else {
+        $('#nom').css('borderColor', ('red'));
+      }
+      if ((/^[^-]\D*(-)?\D+$/i).test(prenom)){
+        $('#prenom').css('borderColor', ('green'));
+      } else {
+        $('#prenom').css('borderColor', ('red'));
+      }
+      if ((/^[\w\-\.]+[a-z0-9]@[\w\-\.]+[a-z0-9]\.[a-z]{2,}/i).test(mail)) { // regex
+        $('#adresseMail').css('borderColor', ('green'));
+      } else {
+        $('#adresseMail').css('borderColor', ('red'));
+      }
+      if (/^0[1-9]([ \.\-\/]?\d{2}){4}$/.test(telephone)){ // si la valeur n'est pas un nombre tu fais : il faut des nombres
+      $('#telephone').css('borderColor', ('green'));
+    }else {
+      $('#telephone').css('borderColor', ('red'));
+    }
+  });
+  </script>
+</body>
+</html>
